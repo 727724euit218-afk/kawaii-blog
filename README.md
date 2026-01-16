@@ -1,193 +1,318 @@
-# Mii_to_you Blog - Full-Stack Application
+# ✨ Mii_to_you - Kawaii Pixel Art Blog
 
-A cozy pixel art blog with complete backend functionality!
+A cozy, full-stack blog application with a nostalgic pixel art aesthetic. Built with Node.js, Express, and SQLite, featuring a complete content management system for writers and an engaging reading experience.
 
-## 🚀 Quick Start
+**Live Demo**: [https://kawaii-blog.onrender.com](https://kawaii-blog.onrender.com)
 
-### Installation
+![Blog Screenshot](https://img.shields.io/badge/status-live-success)
+![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-1. Navigate to the project directory:
-```bash
-cd pixel-blog
-```
+---
 
-2. Install dependencies:
-```bash
-npm install
-```
+## 🎨 Features
 
-3. Start the server:
-```bash
-npm start
-```
+### For Readers
+- **📖 Blog Posts**: Browse posts with search and category filtering
+- **🔍 Full Post View**: Dedicated pages for each blog post
+- **💬 Comments**: Leave comments on posts (moderated by writer)
+- **📧 Newsletter**: Subscribe with email and optional phone number
+- **🎵 Sound Effects**: Interactive pixel sounds and ambient music
+- **✨ Pixel Art Design**: Cozy kawaii aesthetic with pastel gradients
 
-4. Open your browser:
-- **Reader View**: http://localhost:3000
-- **Writer Login**: http://localhost:3000/login.html
+### For Writers
+- **🔐 Secure Login**: JWT-based authentication
+- **✍️ Post Management**: Create, edit, delete, and publish posts
+- **🖼️ Image Upload**: Add featured images to posts (up to 5MB)
+- **💬 Comment Moderation**: Approve or delete reader comments
+- **📊 Subscriber Management**: View newsletter subscribers
+- **📬 Contact Messages**: Manage reader inquiries
 
-### Default Credentials
+---
 
-- **Username**: `mitra`
-- **Password**: `changeme123`
+## 🛠️ Tech Stack
 
-⚠️ **Important**: Change the password after first login!
+### Backend
+- **Runtime**: Node.js (≥18.0.0)
+- **Framework**: Express.js
+- **Database**: SQLite3
+- **Authentication**: JWT (jsonwebtoken)
+- **Password Hashing**: bcryptjs
+- **File Upload**: Multer
+- **CORS**: cors middleware
+
+### Frontend
+- **HTML5**: Semantic markup
+- **CSS3**: Custom pixel art styling
+- **JavaScript**: Vanilla JS (no frameworks)
+- **Font**: Press Start 2P (Google Fonts)
+- **Audio**: Web Audio API
+
+---
 
 ## 📁 Project Structure
 
 ```
 pixel-blog/
 ├── server/
-│   ├── server.js          # Main Express server
-│   ├── database.js        # SQLite database setup
-│   ├── auth.js            # JWT authentication
-│   ├── routes/            # API endpoints
-│   │   ├── posts.js
-│   │   ├── comments.js
-│   │   ├── likes.js
-│   │   ├── subscribers.js
-│   │   └── contact.js
-│   └── uploads/           # Uploaded images
+│   ├── database.js          # SQLite database setup
+│   ├── auth.js              # JWT authentication
+│   ├── seed.js              # Auto-populate default posts
+│   ├── server.js            # Main Express server
+│   ├── routes/
+│   │   ├── posts.js         # Post CRUD endpoints
+│   │   ├── comments.js      # Comment endpoints
+│   │   ├── likes.js         # Like system
+│   │   ├── subscribers.js   # Newsletter subscriptions
+│   │   └── contact.js       # Contact messages
+│   └── uploads/             # Uploaded images
 ├── public/
-│   ├── index.html         # Reader view
-│   ├── login.html         # Writer login
-│   └── writer.html        # Writer dashboard
+│   ├── index.html           # Reader homepage
+│   ├── post.html            # Full post view
+│   ├── login.html           # Writer login
+│   └── writer.html          # Writer dashboard
 ├── package.json
-└── blog.db                # SQLite database (created on first run)
+├── .gitignore
+└── README.md
 ```
 
-## 🎨 Features
+---
 
-### Reader Features
-- ✅ View all published blog posts
-- ✅ Search posts by title/content
-- ✅ Filter posts by category
-- ✅ Add comments to posts
-- ✅ Like posts (IP-based)
-- ✅ Share posts on social media
-- ✅ Subscribe to newsletter
-- ✅ Send contact messages
+## 🚀 Quick Start
 
-### Writer Features
-- ✅ Secure login with JWT
-- ✅ Create, edit, and delete posts
-- ✅ Upload images for posts
-- ✅ Publish/unpublish posts (drafts)
-- ✅ Moderate comments (approve/delete)
-- ✅ View subscribers list
-- ✅ Read contact messages
-- ✅ View post analytics (likes, comments)
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+- Git
 
-## 🔌 API Endpoints
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/727724euit218-afk/kawaii-blog.git
+   cd kawaii-blog
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Create environment file**
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` and set your JWT secret:
+   ```
+   PORT=3000
+   JWT_SECRET=your-super-secret-random-key
+   ```
+
+4. **Start the server**
+   ```bash
+   npm start
+   ```
+
+5. **Open in browser**
+   - Reader view: http://localhost:3000
+   - Writer login: http://localhost:3000/login.html
+
+### Default Credentials
+- **Username**: `mitra`
+- **Password**: `changeme123`
+
+⚠️ **Change these in production!**
+
+---
+
+## 📚 API Documentation
 
 ### Public Endpoints
 
 #### Posts
 - `GET /api/posts` - Get all published posts
 - `GET /api/posts/:id` - Get single post
-- `GET /api/posts/category/:category` - Filter by category
+- `GET /api/posts/category/:category` - Get posts by category
 
 #### Comments
-- `GET /api/comments/:postId` - Get post comments
-- `POST /api/comments/:postId` - Add comment
+- `POST /api/comments` - Submit a comment
+- `GET /api/comments/post/:id` - Get approved comments for a post
+
+#### Subscriptions
+- `POST /api/subscribe` - Subscribe to newsletter
 
 #### Likes
-- `GET /api/likes/:postId/count` - Get like count
-- `POST /api/likes/:postId` - Like a post
+- `POST /api/likes` - Like a post
+- `GET /api/likes/:postId` - Get like count
+- `GET /api/likes/:postId/status` - Check if IP has liked
 
-#### Other
-- `POST /api/subscribe` - Subscribe to newsletter
-- `POST /api/contact` - Send contact message
+### Admin Endpoints (Require Authentication)
 
-### Protected Endpoints (Require JWT Token)
-
-#### Authentication
-- `POST /api/auth/login` - Login
-
-#### Post Management
+#### Posts
 - `GET /api/posts/admin/all` - Get all posts (including drafts)
-- `POST /api/posts/admin/create` - Create post
+- `POST /api/posts/admin/create` - Create new post
 - `PUT /api/posts/admin/:id` - Update post
 - `DELETE /api/posts/admin/:id` - Delete post
+- `PUT /api/posts/admin/:id/publish` - Toggle publish status
 
-#### Comment Moderation
+#### Comments
 - `GET /api/comments/admin/all` - Get all comments
 - `PUT /api/comments/admin/:id/approve` - Approve comment
 - `DELETE /api/comments/admin/:id` - Delete comment
 
-#### Other Admin
-- `GET /api/subscribe/admin/all` - Get subscribers
-- `GET /api/contact/admin/all` - Get contact messages
-- `POST /api/admin/upload` - Upload image
+#### Subscribers
+- `GET /api/subscribe/admin/all` - Get all subscribers
+- `DELETE /api/subscribe/admin/:id` - Remove subscriber
 
-## 🗄️ Database Schema
+#### Contact
+- `GET /api/contact/admin/all` - Get all messages
+- `DELETE /api/contact/admin/:id` - Delete message
+
+#### Upload
+- `POST /api/admin/upload` - Upload image (multipart/form-data)
+
+---
+
+## 🌐 Deployment
+
+### Deploy to Render (Recommended)
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
+
+2. **Create Render Account**
+   - Go to [render.com](https://render.com)
+   - Sign up with GitHub
+
+3. **Create Web Service**
+   - Click "New +" → "Web Service"
+   - Select your repository
+   - Configure:
+     - **Build Command**: `npm install`
+     - **Start Command**: `npm start`
+     - **Environment Variable**: `JWT_SECRET` = (random string)
+
+4. **Deploy**
+   - Click "Create Web Service"
+   - Wait 5-10 minutes
+   - Your blog is live! 🎉
+
+### Deploy to Railway
+
+1. Go to [railway.app](https://railway.app)
+2. Sign up with GitHub
+3. "New Project" → "Deploy from GitHub repo"
+4. Select repository
+5. Add environment variable: `JWT_SECRET`
+6. Deploy!
+
+---
+
+## 🎨 Customization
+
+### Change Colors
+Edit the gradient in `public/index.html`:
+```css
+background: linear-gradient(to bottom, #B8A5D8 0%, #E8B4D4 50%, #F5C6AA 100%);
+```
+
+### Add Categories
+Update category options in:
+- `public/writer.html` (line 250-254)
+- `public/index.html` (filter buttons)
+
+### Modify Default Posts
+Edit `server/seed.js` to change the auto-populated posts.
+
+---
+
+## 🔒 Security Features
+
+- **JWT Authentication**: Secure token-based auth
+- **Password Hashing**: bcrypt with salt rounds
+- **SQL Injection Prevention**: Parameterized queries
+- **CORS Protection**: Configured CORS middleware
+- **Input Validation**: Server-side validation
+- **File Upload Limits**: 5MB max, image types only
+- **IP-based Rate Limiting**: For likes
+
+---
+
+## 📊 Database Schema
 
 ### Tables
-- **users** - Writer accounts
-- **posts** - Blog posts
-- **comments** - Post comments
-- **likes** - Post likes (IP-based)
-- **subscribers** - Newsletter subscribers
-- **contact_messages** - Contact form submissions
 
-## 🔒 Security
+**users**
+- id, username, email, password, created_at
 
-- Passwords hashed with bcrypt
-- JWT token authentication
-- SQL injection prevention (parameterized queries)
-- Input validation
-- File upload restrictions (images only, 5MB max)
+**posts**
+- id, title, content, excerpt, category, image_url, author_id, published, created_at, updated_at
 
-## 🛠️ Development
+**comments**
+- id, post_id, author_name, author_email, content, approved, created_at
 
-### Adding a New Post (via API)
+**likes**
+- id, post_id, ip_address, created_at
 
-```javascript
-const response = await fetch('/api/posts/admin/create', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-    },
-    body: JSON.stringify({
-        title: 'My New Post',
-        content: 'Full post content...',
-        excerpt: 'Short preview...',
-        category: 'lifestyle',
-        published: true
-    })
-});
-```
+**subscribers**
+- id, name, email, phone, subscribed_at
 
-### Uploading an Image
+**contact_messages**
+- id, name, email, message, created_at
 
-```javascript
-const formData = new FormData();
-formData.append('image', fileInput.files[0]);
+---
 
-const response = await fetch('/api/admin/upload', {
-    method: 'POST',
-    headers: {
-        'Authorization': `Bearer ${token}`
-    },
-    body: formData
-});
-```
+## 🐛 Troubleshooting
 
-## 📝 Notes
+### Posts not showing on deployed site
+- Database resets on free tier (ephemeral storage)
+- Auto-seed script populates default posts on startup
+- Or manually add posts via writer dashboard
 
-- The database file (`blog.db`) is created automatically on first run
-- Uploaded images are stored in `server/uploads/`
-- Comments require approval before appearing publicly
-- Likes are limited to one per IP address per post
+### Can't login to writer dashboard
+- Check JWT_SECRET environment variable is set
+- Verify default credentials haven't been changed
+- Clear browser cache and cookies
 
-## 🎯 Next Steps
+### Images not uploading
+- Check file size (max 5MB)
+- Verify file type (jpg, png, gif, webp only)
+- Ensure `server/uploads/` directory exists
 
-1. Change default password after first login
-2. Create your first blog post
-3. Customize the design to match your brand
-4. Add more categories as needed
-5. Set up email notifications (optional)
+---
 
-## 💖 Made with pixels and love!
+## 📝 License
 
-Enjoy your new blog! ✨
+MIT License - feel free to use this project for learning or personal use!
+
+---
+
+## 👩‍💻 Author
+
+**Mitra** (Sangamitra Pugal)
+- GitHub: [@727724euit218-afk](https://github.com/727724euit218-afk)
+
+---
+
+## 🙏 Acknowledgments
+
+- Pixel art design inspired by retro gaming aesthetics
+- Press Start 2P font by CodeMan38
+- Built with ❤️ and pixels
+
+---
+
+## 📞 Support
+
+For issues or questions:
+1. Check the [Troubleshooting](#-troubleshooting) section
+2. Review the [API Documentation](#-api-documentation)
+3. Open an issue on GitHub
+
+---
+
+**Made with 💖 and pixels** ✨

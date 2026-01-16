@@ -120,8 +120,13 @@ app.use((err, req, res, next) => {
 });
 
 // Initialize database and start server
+const { seedDatabase } = require('./seed');
+
 initializeDatabase()
     .then(() => {
+        // Seed database with default posts if empty
+        seedDatabase();
+
         app.listen(PORT, () => {
             console.log(`\n🎨 Mii_to_you Blog Server Running!`);
             console.log(`📍 Reader View: http://localhost:${PORT}`);

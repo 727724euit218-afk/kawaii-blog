@@ -1,0 +1,30 @@
+{
+    "name": "mii-to-you-blog",
+    "version": "1.0.0",
+    "description": "Cozy pixel art blog with full-stack backend",
+    "main": "server/server.js",
+    "scripts": {
+        "start": "node server/server.js",
+        "dev": "node server/server.js"
+    },
+    "keywords": [
+        "blog",
+        "pixel-art",
+        "express",
+        "sqlite"
+    ],
+    "author": "Mitra",
+    "license": "MIT",
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "sqlite3": "^5.1.6",
+        "bcryptjs": "^2.4.3",
+        "jsonwebtoken": "^9.0.2",
+        "multer": "^1.4.5-lts.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1"
+    }
+}

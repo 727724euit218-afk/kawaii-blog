@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Mii_to_you - Life and perceptions!! ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(to bottom, #B8A5D8 0%, #E8B4D4 50%, #F5C6AA 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Elements */
+        .cloud {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 100px;
+            z-index: 0;
+            animation: float-cloud linear infinite;
+            cursor: pointer;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 100px;
+        }
+
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 10%;
+            left: -150px;
+            animation-duration: 25s;
+        }
+
+        .cloud1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cloud1::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 10px;
+        }
+
+        .cloud2 {
+            width: 120px;
+            height: 45px;
+            top: 30%;
+            left: -180px;
+            animation-duration: 30s;
+            animation-delay: 5s;
+        }
+
+        .cloud2::before {
+            width: 55px;
+            height: 55px;
+            top: -28px;
+            left: 15px;
+        }
+
+        .cloud2::after {
+            width: 65px;
+            height: 45px;
+            top: -18px;
+            right: 15px;
+        }
+
+        .cloud3 {
+            width: 90px;
+            height: 35px;
+            top: 60%;
+            left: -140px;
+            animation-duration: 20s;
+            animation-delay: 10s;
+        }
+
+        .cloud3::before {
+            width: 45px;
+            height: 45px;
+            top: -22px;
+            left: 8px;
+        }
+
+        .cloud3::after {
+            width: 55px;
+            height: 35px;
+            top: -12px;
+            right: 8px;
+        }
+
+        @keyframes float-cloud {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(calc(100vw + 200px));
+            }
+        }
+
+        .star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #FFE5B4;
+            border-radius: 50%;
+            z-index: 0;
+            animation: twinkle 3s ease-in-out infinite;
+            box-shadow: 0 0 3px #FFE5B4;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            border: 4px solid #8B7BA8;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow:
+                8px 8px 0 rgba(139, 123, 168, 0.3),
+                12px 12px 0 rgba(139, 123, 168, 0.2),
+                16px 16px 0 rgba(139, 123, 168, 0.1);
+        }
+
+        h1 {
+            color: #8B7BA8;
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 #E8B4D4;
+            line-height: 1.6;
+        }
+
+        .subtitle {
+            color: #8B7BA8;
+            font-size: 10px;
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            border: 4px solid #8B7BA8;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow:
+                8px 8px 0 rgba(139, 123, 168, 0.3),
+                12px 12px 0 rgba(139, 123, 168, 0.2);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: #B8A5D8;
+            color: white;
+            border: 3px solid #8B7BA8;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow:
+                4px 4px 0 rgba(139, 123, 168, 0.5),
+                6px 6px 0 rgba(139, 123, 168, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                6px 6px 0 rgba(139, 123, 168, 0.5),
+                8px 8px 0 rgba(139, 123, 168, 0.3);
+        }
+
+        .nav-btn:active,
+        .nav-btn.active {
+            transform: translateY(2px);
+            box-shadow:
+                2px 2px 0 rgba(139, 123, 168, 0.5),
+                3px 3px 0 rgba(139, 123, 168, 0.3);
+            background: #8B7BA8;
+        }
+
+        .nav-btn.playing {
+            background: #F5C6AA;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Search and Filter Section */
+        .controls {
+            background: rgba(255, 255, 255, 0.9);
+            border: 4px solid #E8B4D4;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow:
+                8px 8px 0 rgba(232, 180, 212, 0.3),
+                12px 12px 0 rgba(232, 180, 212, 0.2);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            border: 3px solid #E8B4D4;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #8B7BA8;
+            margin-bottom: 15px;
+            box-shadow:
+                4px 4px 0 rgba(232, 180, 212, 0.3);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #8B7BA8;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .filter-btn {
+            background: #F5C6AA;
+            color: white;
+            border: 3px solid #E8B4D4;
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 8px;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow:
+                4px 4px 0 rgba(232, 180, 212, 0.4);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                6px 6px 0 rgba(232, 180, 212, 0.4);
+        }
+
+        .filter-btn.active {
+            background: #E8B4D4;
+            transform: translateY(2px);
+            box-shadow:
+                2px 2px 0 rgba(232, 180, 212, 0.4);
+        }
+
+        .post-counter {
+            text-align: center;
+            color: #8B7BA8;
+            font-size: 8px;
+            line-height: 1.8;
+        }
+
+        /* Blog Posts */
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .post-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #E8B4D4;
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+            box-shadow:
+                8px 8px 0 rgba(232, 180, 212, 0.4),
+                12px 12px 0 rgba(232, 180, 212, 0.2),
+                16px 16px 0 rgba(232, 180, 212, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .post-card.hidden {
+            display: none;
+        }
+
+        .post-card.fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 20px;
+            animation: sparkle-twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle-twinkle {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .post-title {
+            color: #8B7BA8;
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .post-meta {
+            color: #E8B4D4;
+            font-size: 8px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .post-content {
+            color: #8B7BA8;
+            font-size: 10px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .post-full-content {
+            display: none;
+            color: #8B7BA8;
+            font-size: 10px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed #E8B4D4;
+        }
+
+        .post-full-content.expanded {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .read-more-btn {
+            background: #F5C6AA;
+            color: white;
+            border: 3px solid #E8B4D4;
+            border-radius: 10px;
+            padding: 10px 18px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow:
+                4px 4px 0 rgba(232, 180, 212, 0.5),
+                6px 6px 0 rgba(232, 180, 212, 0.3);
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                6px 6px 0 rgba(232, 180, 212, 0.5),
+                8px 8px 0 rgba(232, 180, 212, 0.3);
+        }
+
+        .read-more-btn:active {
+            transform: translateY(2px);
+            box-shadow:
+                2px 2px 0 rgba(232, 180, 212, 0.5),
+                3px 3px 0 rgba(232, 180, 212, 0.3);
+        }
+
+        /* About Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #8B7BA8;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow:
+                12px 12px 0 rgba(139, 123, 168, 0.4),
+                16px 16px 0 rgba(139, 123, 168, 0.2);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #E8B4D4;
+            color: white;
+            border: 3px solid #8B7BA8;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            cursor: pointer;
+            box-shadow:
+                4px 4px 0 rgba(139, 123, 168, 0.4);
+        }
+
+        .close-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .modal-content h2 {
+            color: #8B7BA8;
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .modal-content p {
+            color: #8B7BA8;
+            font-size: 10px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: #E8B4D4;
+            color: white;
+            border: 3px solid #8B7BA8;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 99;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            box-shadow:
+                6px 6px 0 rgba(139, 123, 168, 0.4);
+            transition: all 0.2s;
+        }
+
+        .scroll-top.visible {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                8px 8px 0 rgba(139, 123, 168, 0.4);
+        }
+
+        /* Mascot Widget */
+        .mascot-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #8B7BA8;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            z-index: 100;
+            animation: bounce 2s ease-in-out infinite;
+            box-shadow:
+                6px 6px 0 rgba(139, 123, 168, 0.4),
+                10px 10px 0 rgba(139, 123, 168, 0.2);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .mascot-icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .mascot-message {
+            color: #8B7BA8;
+            font-size: 8px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.9);
+            border: 4px solid #8B7BA8;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow:
+                8px 8px 0 rgba(139, 123, 168, 0.3),
+                12px 12px 0 rgba(139, 123, 168, 0.2);
+        }
+
+        footer p {
+            color: #E8B4D4;
+            font-size: 10px;
+            line-height: 1.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 16px;
+            }
+
+            .subtitle {
+                font-size: 8px;
+            }
+
+            .nav-buttons {
+                gap: 10px;
+            }
+
+            .nav-btn {
+                font-size: 8px;
+                padding: 10px 15px;
+            }
+
+            .post-title {
+                font-size: 12px;
+            }
+
+            .post-meta {
+                font-size: 7px;
+            }
+
+            .post-content {
+                font-size: 8px;
+            }
+
+            .mascot-widget {
+                bottom: 10px;
+                right: 10px;
+                padding: 15px;
+            }
+
+            .mascot-icon {
+                font-size: 30px;
+            }
+
+            .mascot-message {
+                font-size: 7px;
+            }
+
+            .scroll-top {
+                bottom: 80px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Clouds -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>✨ Mii_to_you ✨</h1>
+            <p class="subtitle">Life and perceptions!! 🌸</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="showHome()">Home</button>
+                <button class="nav-btn" onclick="showAbout()">About</button>
+                <button class="nav-btn" onclick="scrollToArchive()">Archive</button>
+                <button class="nav-btn" onclick="showContact()">Contact</button>
+                <button class="nav-btn" id="musicToggle" onclick="toggleMusic()">🎵 Music</button>
+            </div>
+        </nav>
+
+        <!-- Search and Filter Controls -->
+        <div class="controls">
+            <input type="text" class="search-box" id="searchBox" placeholder="Search posts..." onkeyup="searchPosts()">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterPosts('all')">All Posts</button>
+                <button class="filter-btn" onclick="filterPosts('lifestyle')">Lifestyle</button>
+                <button class="filter-btn" onclick="filterPosts('reflection')">Reflection</button>
+                <button class="filter-btn" onclick="filterPosts('social')">Social Media</button>
+                <button class="filter-btn" onclick="filterPosts('intro')">Introduction</button>
+            </div>
+            <div class="post-counter" id="postCounter">Showing 4 of 4 posts</div>
+        </div>
+
+        <!-- Blog Posts -->
+        <div class="blog-posts" id="blogPosts">
+            <!-- Posts will be loaded dynamically here -->
+            <div class="item-list" style="text-align: center; padding: 50px;">
+                <p style="color: #8B7BA8; font-size: 10px;">Loading cozy posts... ✨</p>
+            </div>
+        </div>
+
+        <!-- Subscription Widget -->
+        <div class="subscribe-widget">
+            <h3>📧 Subscribe to Newsletter</h3>
+            <p style="color: #8B7BA8; font-size: 8px; text-align: center; margin-bottom: 20px;">Get notified about new
+                posts! ✨</p>
+            <form id="subscribe-form" class="subscribe-form">
+                <input type="text" id="sub-name" placeholder="Your Name" required>
+                <input type="email" id="sub-email" placeholder="Your Email" required>
+                <input type="tel" id="sub-phone" placeholder="Phone (Optional)">
+                <button type="submit" class="subscribe-btn">Subscribe ✨</button>
+            </form>
+            <div id="subscribe-message"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Made with 💖 and pixels by Mitra</p>
+            <p style="margin-top: 10px;">© 2026 Mii_to_you</p>
+            <p style="margin-top: 20px;">
+                <a href="/login.html"
+                    style="color: #E8B4D4; font-size: 8px; text-decoration: none; border-bottom: 1px dashed #E8B4D4;">✍️
+                    Writer Mode</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal" id="aboutModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeAbout()">✕</button>
+            <h2>About Mii 🌸</h2>
+            <p>
+                Hey, welcome!! Get ready for creativity, Yaps, rants, incredible stories, and good vibes. Let's embark
+                on this journey together!
+            </p>
+            <p>
+                Hello! I'm Sangamitra Pugal (aka) Mitra. I am a 17 year old teen and this is my blog that documents my
+                journey. I write about things that fascinate me so join me on this whimsical journey, and let's sprinkle
+                a little more joy and laughter into our everyday lives, cheers!!
+            </p>
+            <p>
+                This blog is my creative outlet where I share thoughts on life, perceptions, and everything in between.
+                From everyday observations to deeper reflections, I hope my words resonate with you and bring a little
+                joy to your day! ✨
+            </p>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Mascot Widget -->
+    <div class="mascot-widget">
+        <span class="mascot-icon">🌟</span>
+        <p class="mascot-message" id="mascot-message">Have a nice day!</p>
+    </div>
+
+    <script>
+        // ========================================
+        // 🎧 Cozy Pixel Sound Engine
+        // No MP3s required – browser generated pixel sounds
+        // ========================================
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Core sound player
+        function playSound(freq, duration, type = "sine", volume = 0.3) {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+
+            osc.type = type;
+            osc.frequency.value = freq;
+
+            gain.gain.value = volume;
+
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+            osc.stop(audioContext.currentTime + duration);
+        }
+
+        // --- UI Sounds ---
+        function clickSound() {
+            playSound(900, 0.08, "square");
+        }
+
+        function hoverSound() {
+            playSound(600, 0.04, "sine", 0.2);
+        }
+
+        function sparkleSound() {
+            playSound(1200, 0.1, "sine");
+            setTimeout(() => playSound(1400, 0.1, "sine"), 60);
+        }
+
+        function bubbleSound() {
+            playSound(400 + Math.random() * 200, 0.15, "sine");
+        }
+
+        function successSound() {
+            playSound(523, 0.1);
+            setTimeout(() => playSound(659, 0.1), 100);
+            setTimeout(() => playSound(784, 0.15), 200);
+        }
+
+        function typingSound() {
+            // Random pitch variation for natural typing feel
+            playSound(800 + Math.random() * 100, 0.03, "square", 0.15);
+        }
+
+        // --- Background Ambient Music ---
+        let musicLoop = null;
+        let isMusicPlaying = false;
+
+        function toggleMusic() {
+            const btn = document.getElementById('musicToggle');
+
+            if (isMusicPlaying) {
+                // Stop music
+                clearInterval(musicLoop);
+                musicLoop = null;
+                isMusicPlaying = false;
+                clickSound();
+                btn?.classList.remove("playing");
+                btn.textContent = "🎵 Music";
+                return;
+            }
+
+            // Start music
+            successSound();
+            isMusicPlaying = true;
+            btn?.classList.add("playing");
+            btn.textContent = "🔇 Music";
+
+            musicLoop = setInterval(() => {
+                const notes = [523, 587, 659, 784, 880];
+                playSound(notes[Math.floor(Math.random() * notes.length)], 0.3, "sine", 0.15);
+            }, 3000);
+        }
+
+        // ========================================
+        // Generate random stars
+        // ========================================
+        function createStars() {
+            const starCount = 30;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.cursor = 'pointer';
+
+                // Add sparkle sound to stars
+                star.addEventListener('click', sparkleSound);
+
+                document.body.appendChild(star);
+            }
+        }
+
+        // Rotate mascot messages
+        const messages = [
+            "Have a nice day!",
+            "You're doing great!",
+            "Stay cozy! ☁️",
+            "Keep smiling! 😊",
+            "Love your vibe! ✨"
+        ];
+        let currentMessageIndex = 0;
+
+        function rotateMascotMessage() {
+            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+            document.getElementById('mascot-message').textContent = messages[currentMessageIndex];
+        }
+
+        // Toggle post expansion
+        function togglePost(postId) {
+            const fullContent = document.getElementById(postId + '-full');
+            const btn = event.target;
+
+            if (fullContent.classList.contains('expanded')) {
+                fullContent.classList.remove('expanded');
+                btn.textContent = 'Read More →';
+            } else {
+                fullContent.classList.add('expanded');
+                btn.textContent = 'Show Less ←';
+                successSound();
+            }
+        }
+
+        // ========================================
+        // 🚀 Dynamic Post Loading
+        // ========================================
+        let allPosts = [];
+        let currentFilter = 'all';
+
+        async function fetchPosts() {
+            try {
+                const response = await fetch('/api/posts');
+                allPosts = await response.json();
+                renderPosts();
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+                document.getElementById('blogPosts').innerHTML = `
+                    <div style="text-align: center; padding: 50px;">
+                        <p style="color: #ff6b6b; font-size: 10px;">Failed to load posts. Please try again later. 😿</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderPosts() {
+            const container = document.getElementById('blogPosts');
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+
+            const filteredPosts = allPosts.filter(post => {
+                const matchesFilter = currentFilter === 'all' || post.category === currentFilter;
+                const matchesSearch = post.title.toLowerCase().includes(searchTerm) ||
+                    post.content.toLowerCase().includes(searchTerm);
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredPosts.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 50px;">
+                        <p style="color: #8B7BA8; font-size: 10px;">No posts found matching your search. 🌿</p>
+                    </div>
+                `;
+                updatePostCounter(0, allPosts.length);
+                return;
+            }
+
+            container.innerHTML = filteredPosts.map((post, index) => `
+                <article class="post-card fade-in" data-category="${post.category}">
+                    <span class="sparkle">✨</span>
+                    <h2 class="post-title">${post.title}</h2>
+                    <div class="post-meta">
+                        📅 ${new Date(post.created_at).toLocaleDateString()} | ✍️ Mitra | 📁 ${post.category.charAt(0).toUpperCase() + post.category.slice(1)}
+                    </div>
+                    ${post.image_url ? `<img src="${post.image_url}" alt="${post.title}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 15px; margin: 15px 0; border: 3px solid #E8B4D4;">` : ''}
+                    <p class="post-content">${post.excerpt}</p>
+                    <a href="/post.html?id=${post.id}" class="read-more-btn" style="display: inline-block; text-decoration: none;">Read More →</a>
+                </article>
+            `).join('');
+
+            updatePostCounter(filteredPosts.length, allPosts.length);
+            initializeSounds(); // Re-initialize sounds for new elements
+        }
+
+        // Filter posts by category
+        function filterPosts(category) {
+            currentFilter = category;
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            // Update active button
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category) || (category === 'all' && btn.textContent.toLowerCase() === 'all posts')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            renderPosts();
+            localStorage.setItem('selectedCategory', category);
+        }
+
+        // Search posts
+        function searchPosts() {
+            renderPosts();
+        }
+
+        // Update post counter
+        function updatePostCounter(visible, total) {
+            document.getElementById('postCounter').textContent = `Showing ${visible} of ${total} posts`;
+        }
+
+        // Navigation functions
+        function showHome() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            if (event) event.target.classList.add('active');
+        }
+
+        function showAbout() {
+            document.getElementById('aboutModal').classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            if (event) event.target.classList.add('active');
+        }
+
+        function closeAbout() {
+            document.getElementById('aboutModal').classList.remove('active');
+            document.querySelectorAll('.nav-btn')[0].classList.add('active');
+        }
+
+        function scrollToArchive() {
+            document.querySelector('.blog-posts').scrollIntoView({ behavior: 'smooth' });
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            if (event) event.target.classList.add('active');
+        }
+
+        function showContact() {
+            alert('Contact: Feel free to reach out via the blog comments or social media! 💌');
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function () {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Close modal on outside click
+        document.getElementById('aboutModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeAbout();
+            }
+        });
+
+        // ========================================
+        // 🎵 Sound Integration
+        // ========================================
+        function initializeSounds() {
+            // Add click and hover sounds to all buttons
+            document.querySelectorAll('button, .nav-btn, .filter-btn, .read-more-btn, .close-btn, .scroll-top').forEach(btn => {
+                // Remove existing listeners to avoid duplicates
+                btn.removeEventListener('mouseenter', hoverSound);
+                btn.removeEventListener('click', clickSound);
+                btn.addEventListener('mouseenter', hoverSound);
+                btn.addEventListener('click', clickSound);
+            });
+
+            // Add hover sounds to blog cards
+            document.querySelectorAll('.post-card').forEach(card => {
+                card.removeEventListener('mouseenter', hoverSound);
+                card.addEventListener('mouseenter', hoverSound);
+            });
+
+            // Add bubble sounds to clouds
+            document.querySelectorAll('.cloud').forEach(cloud => {
+                cloud.style.cursor = 'pointer';
+                cloud.removeEventListener('click', bubbleSound);
+                cloud.addEventListener('click', bubbleSound);
+            });
+
+            // Add sparkle sound to mascot
+            const mascot = document.querySelector('.mascot-widget');
+            if (mascot) {
+                mascot.removeEventListener('click', sparkleSound);
+                mascot.addEventListener('click', sparkleSound);
+            }
+
+            // Add typing sound to search box
+            const searchBox = document.getElementById('searchBox');
+            if (searchBox) {
+                searchBox.removeEventListener('keydown', typingSound);
+                searchBox.addEventListener('keydown', typingSound);
+            }
+        }
+
+        // ========================================
+        // Initialize
+        // ========================================
+        createStars();
+        setInterval(rotateMascotMessage, 5000);
+
+        // Initial fetch
+        fetchPosts();
+
+        // Restore last selected category from localStorage
+        window.addEventListener('load', () => {
+            const savedCategory = localStorage.getItem('selectedCategory');
+            if (savedCategory && savedCategory !== 'all') {
+                currentFilter = savedCategory;
+                filterPosts(savedCategory);
+            }
+        });
+
+        // Subscription form handler
+        document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const data = {
+                name: document.getElementById('sub-name').value,
+                email: document.getElementById('sub-email').value,
+                phone: document.getElementById('sub-phone').value || null
+            };
+
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.error) {
+                    document.getElementById('subscribe-message').innerHTML = `
+                        <div class="subscribe-message error">${result.error}</div>
+                    `;
+                } else {
+                    document.getElementById('subscribe-message').innerHTML = `
+                        <div class="subscribe-message success">✨ Thank you for subscribing! You'll get updates about new posts.</div>
+                    `;
+                    document.getElementById('subscribe-form').reset();
+                    successSound();
+
+                    setTimeout(() => {
+                        document.getElementById('subscribe-message').innerHTML = '';
+                    }, 5000);
+                }
+            } catch (error) {
+                document.getElementById('subscribe-message').innerHTML = `
+                    <div class="subscribe-message error">Failed to subscribe. Please try again.</div>
+                `;
+            }
+        });
+
+        // Initialize sounds after a short delay
+        setTimeout(initializeSounds, 500);
+    </script>
+</body>
+
+</html>

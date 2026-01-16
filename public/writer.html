@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writer Dashboard - Mii_to_you</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(to bottom, #B8A5D8 0%, #E8B4D4 50%, #F5C6AA 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #8B7BA8;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 8px 8px 0 rgba(139, 123, 168, 0.3);
+        }
+
+        h1 {
+            color: #8B7BA8;
+            font-size: 18px;
+        }
+
+        .user-info {
+            color: #E8B4D4;
+            font-size: 8px;
+        }
+
+        .logout-btn {
+            background: #E8B4D4;
+            color: white;
+            border: 3px solid #8B7BA8;
+            border-radius: 10px;
+            padding: 8px 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 8px;
+            cursor: pointer;
+        }
+
+        /* Tabs */
+        .tabs {
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #8B7BA8;
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            box-shadow: 8px 8px 0 rgba(139, 123, 168, 0.3);
+        }
+
+        .tab-btn {
+            background: #F5C6AA;
+            color: white;
+            border: 3px solid #E8B4D4;
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: #B8A5D8;
+            border-color: #8B7BA8;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #8B7BA8;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 8px 8px 0 rgba(139, 123, 168, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #8B7BA8;
+            font-size: 10px;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 3px solid #E8B4D4;
+            border-radius: 10px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 9px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        textarea {
+            min-height: 200px;
+            font-family: monospace;
+        }
+
+        .btn {
+            background: #B8A5D8;
+            color: white;
+            border: 3px solid #8B7BA8;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            cursor: pointer;
+            margin-right: 10px;
+            box-shadow: 4px 4px 0 rgba(139, 123, 168, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #ff6b6b;
+            border-color: #cc0000;
+        }
+
+        /* Lists */
+        .item-list {
+            margin-top: 20px;
+        }
+
+        .item {
+            background: rgba(232, 180, 212, 0.2);
+            border: 2px solid #E8B4D4;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .item h3 {
+            color: #8B7BA8;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .item p {
+            color: #8B7BA8;
+            font-size: 8px;
+            line-height: 1.6;
+        }
+
+        .item-actions {
+            margin-top: 10px;
+        }
+
+        .item-actions button {
+            padding: 8px 12px;
+            font-size: 8px;
+            margin-right: 8px;
+        }
+
+        .success {
+            color: #00cc00;
+            font-size: 10px;
+            margin: 10px 0;
+        }
+
+        .error {
+            color: #cc0000;
+            font-size: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="main-container" style="display: none;">
+        <header>
+            <div>
+                <h1>✍️ Writer Dashboard</h1>
+                <p class="user-info">Welcome, <span id="username"></span>!</p>
+            </div>
+            <div>
+                <button class="btn" style="background: #F5C6AA; border-color: #E8B4D4;"
+                    onclick="window.location.href='/'">View Blog</button>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" id="btn-posts" onclick="showTab('posts')">📝 Posts</button>
+            <button class="tab-btn" id="btn-new-post" onclick="showTab('new-post')">➕ New Post</button>
+            <button class="tab-btn" id="btn-comments" onclick="showTab('comments')">💬 Comments</button>
+            <button class="tab-btn" id="btn-subscribers" onclick="showTab('subscribers')">📧 Subscribers</button>
+            <button class="tab-btn" id="btn-messages" onclick="showTab('messages')">✉️ Messages</button>
+        </div>
+
+        <div class="content">
+            <!-- Posts Tab -->
+            <div id="posts-tab" class="tab-content active">
+                <h2 style="color: #8B7BA8; font-size: 16px; margin-bottom: 20px;">Your Posts</h2>
+                <div id="posts-list" class="item-list"></div>
+            </div>
+
+            <!-- New/Edit Post Tab -->
+            <div id="new-post-tab" class="tab-content">
+                <h2 id="form-title" style="color: #8B7BA8; font-size: 16px; margin-bottom: 20px;">Create New Post</h2>
+                <div id="post-message"></div>
+                <form id="post-form">
+                    <input type="hidden" id="post-id">
+                    <input type="hidden" id="post-image-url">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="post-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="post-category" required>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="reflection">Reflection</option>
+                            <option value="social">Social Media</option>
+                            <option value="intro">Introduction</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Featured Image (Optional)</label>
+                        <input type="file" id="post-image" accept="image/*" style="font-size: 8px;">
+                        <div id="image-preview" style="margin-top: 10px; display: none;">
+                            <img id="preview-img"
+                                style="max-width: 300px; border-radius: 10px; border: 3px solid #E8B4D4;">
+                            <button type="button" class="btn btn-danger"
+                                style="display: block; margin-top: 10px; font-size: 8px;" onclick="removeImage()">Remove
+                                Image</button>
+                        </div>
+                        <p style="color: #8B7BA8; font-size: 7px; margin-top: 5px;">Max 5MB. Formats: JPG, PNG, GIF,
+                            WebP</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Excerpt (Short Preview)</label>
+                        <textarea id="post-excerpt" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Content</label>
+                        <textarea id="post-content" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="post-published"> Publish immediately
+                        </label>
+                    </div>
+                    <div style="display: flex;">
+                        <button type="submit" id="submit-btn" class="btn">Create Post</button>
+                        <button type="button" id="cancel-edit-btn" class="btn btn-danger" style="display: none;"
+                            onclick="resetPostForm()">Cancel Edit</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Comments Tab -->
+            <div id="comments-tab" class="tab-content">
+                <h2 style="color: #8B7BA8; font-size: 16px; margin-bottom: 20px;">Moderate Comments</h2>
+                <div id="comments-list" class="item-list"></div>
+            </div>
+
+            <!-- Subscribers Tab -->
+            <div id="subscribers-tab" class="tab-content">
+                <h2 style="color: #8B7BA8; font-size: 16px; margin-bottom: 20px;">Subscribers</h2>
+                <div id="subscribers-list" class="item-list"></div>
+            </div>
+
+            <!-- Messages Tab -->
+            <div id="messages-tab" class="tab-content">
+                <h2 style="color: #8B7BA8; font-size: 16px; margin-bottom: 20px;">Contact Messages</h2>
+                <div id="messages-list" class="item-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication immediately
+        const token = localStorage.getItem('token');
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+        if (!token) {
+            window.location.href = '/login.html';
+        } else {
+            document.getElementById('main-container').style.display = 'block';
+            document.getElementById('username').textContent = user.username || 'Writer';
+        }
+
+        // API helper
+        async function apiCall(endpoint, options = {}) {
+            try {
+                const response = await fetch(endpoint, {
+                    ...options,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                        ...options.headers
+                    }
+                });
+
+                if (response.status === 401 || response.status === 403) {
+                    logout();
+                    return { error: 'Unauthorized' };
+                }
+
+                return response.json();
+            } catch (error) {
+                console.error('API Error:', error);
+                return { error: 'Network error' };
+            }
+        }
+
+        // Tab switching
+        function showTab(tabName, isEditing = false) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            document.getElementById(`btn-${tabName}`).classList.add('active');
+
+            if (tabName === 'posts') loadPosts();
+            if (tabName === 'comments') loadComments();
+            if (tabName === 'subscribers') loadSubscribers();
+            if (tabName === 'messages') loadMessages();
+
+            if (tabName === 'new-post' && !isEditing) {
+                resetPostForm();
+            }
+        }
+
+        // Load posts
+        async function loadPosts() {
+            const posts = await apiCall('/api/posts/admin/all');
+            const list = document.getElementById('posts-list');
+            if (posts.error) return;
+
+            if (posts.length === 0) {
+                list.innerHTML = `<p style="color: #8B7BA8; font-size: 10px; text-align: center;">No posts yet. Click "New Post" to start! ✨</p>`;
+                return;
+            }
+
+            list.innerHTML = posts.map(post => `
+                <div class="item">
+                    <h3>${post.title} ${post.published ? '✅' : '📝 Draft'}</h3>
+                    <p><strong>Category:</strong> ${post.category} | <strong>Created:</strong> ${new Date(post.created_at).toLocaleDateString()}</p>
+                    <p>${post.excerpt}</p>
+                    <div class="item-actions">
+                        <button class="btn" onclick="editPost(${JSON.stringify(post).replace(/"/g, '&quot;')})">Edit</button>
+                        <button class="btn" onclick="togglePublish(${post.id}, ${post.published})">${post.published ? 'Unpublish' : 'Publish'}</button>
+                        <button class="btn btn-danger" onclick="deletePost(${post.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Image preview
+        document.getElementById('post-image').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('preview-img').src = e.target.result;
+                    document.getElementById('image-preview').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function removeImage() {
+            document.getElementById('post-image').value = '';
+            document.getElementById('post-image-url').value = '';
+            document.getElementById('image-preview').style.display = 'none';
+        }
+
+        // Edit post
+        function editPost(post) {
+            showTab('new-post', true);
+            document.getElementById('form-title').textContent = 'Edit Post';
+            document.getElementById('post-id').value = post.id;
+            document.getElementById('post-title').value = post.title;
+            document.getElementById('post-category').value = post.category;
+            document.getElementById('post-excerpt').value = post.excerpt;
+            document.getElementById('post-content').value = post.content;
+            document.getElementById('post-published').checked = !!post.published;
+            document.getElementById('post-image-url').value = post.image_url || '';
+
+            // Show existing image if available
+            if (post.image_url) {
+                document.getElementById('preview-img').src = post.image_url;
+                document.getElementById('image-preview').style.display = 'block';
+            }
+
+            document.getElementById('submit-btn').textContent = 'Update Post';
+            document.getElementById('cancel-edit-btn').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetPostForm() {
+            document.getElementById('form-title').textContent = 'Create New Post';
+            document.getElementById('post-id').value = '';
+            document.getElementById('post-image-url').value = '';
+            document.getElementById('post-form').reset();
+            document.getElementById('submit-btn').textContent = 'Create Post';
+            document.getElementById('cancel-edit-btn').style.display = 'none';
+            document.getElementById('post-message').innerHTML = '';
+            document.getElementById('image-preview').style.display = 'none';
+        }
+
+        // Create/Update post
+        document.getElementById('post-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('post-id').value;
+            const imageFile = document.getElementById('post-image').files[0];
+            let imageUrl = document.getElementById('post-image-url').value;
+
+            // Upload image if a new one was selected
+            if (imageFile) {
+                const formData = new FormData();
+                formData.append('image', imageFile);
+
+                try {
+                    const uploadResponse = await fetch('/api/admin/upload', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: formData
+                    });
+                    const uploadResult = await uploadResponse.json();
+                    if (uploadResult.url) {
+                        imageUrl = uploadResult.url;
+                    } else {
+                        document.getElementById('post-message').innerHTML = `<p class="error">Image upload failed</p>`;
+                        return;
+                    }
+                } catch (error) {
+                    document.getElementById('post-message').innerHTML = `<p class="error">Image upload error</p>`;
+                    return;
+                }
+            }
+
+            const data = {
+                title: document.getElementById('post-title').value,
+                category: document.getElementById('post-category').value,
+                excerpt: document.getElementById('post-excerpt').value,
+                content: document.getElementById('post-content').value,
+                published: document.getElementById('post-published').checked,
+                image_url: imageUrl || null
+            };
+
+            const endpoint = id ? `/api/posts/admin/${id}` : '/api/posts/admin/create';
+            const method = id ? 'PUT' : 'POST';
+
+            const result = await apiCall(endpoint, {
+                method: method,
+                body: JSON.stringify(data)
+            });
+
+            if (result.error) {
+                document.getElementById('post-message').innerHTML = `<p class="error">Error: ${result.error}</p>`;
+            } else {
+                document.getElementById('post-message').innerHTML = `<p class="success">Post ${id ? 'updated' : 'created'} successfully!</p>`;
+                setTimeout(() => {
+                    resetPostForm();
+                    showTab('posts');
+                }, 1000);
+            }
+        });
+
+        // Toggle publish
+        async function togglePublish(id, currentStatus) {
+            await apiCall(`/api/posts/admin/${id}/publish`, { method: 'PUT' });
+            loadPosts();
+        }
+
+        // Delete post
+        async function deletePost(id) {
+            if (confirm('Are you absolutely sure you want to delete this post? This cannot be undone.')) {
+                await apiCall(`/api/posts/admin/${id}`, { method: 'DELETE' });
+                loadPosts();
+            }
+        }
+
+        // Load comments
+        async function loadComments() {
+            const comments = await apiCall('/api/comments/admin/all');
+            const list = document.getElementById('comments-list');
+            if (comments.error) return;
+
+            if (comments.length === 0) {
+                list.innerHTML = `<p style="color: #8B7BA8; font-size: 10px; text-align: center;">No comments yet. Readers are shy! 🌸</p>`;
+                return;
+            }
+
+            list.innerHTML = comments.map(c => `
+                <div class="item">
+                    <h3>${c.author_name} on "${c.post_title || 'Unknown Post'}" ${c.approved ? '✅' : '⏳ Pending'}</h3>
+                    <p><strong>Email:</strong> ${c.author_email} | <strong>Date:</strong> ${new Date(c.created_at).toLocaleDateString()}</p>
+                    <p style="margin: 10px 0; background: white; padding: 10px; border-radius: 50px; font-style: italic;">"${c.content}"</p>
+                    <div class="item-actions">
+                        ${!c.approved ? `<button class="btn" onclick="approveComment(${c.id})">Approve</button>` : ''}
+                        <button class="btn btn-danger" onclick="deleteComment(${c.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function approveComment(id) {
+            await apiCall(`/api/comments/admin/${id}/approve`, { method: 'PUT' });
+            loadComments();
+        }
+
+        async function deleteComment(id) {
+            if (confirm('Delete this comment?')) {
+                await apiCall(`/api/comments/admin/${id}`, { method: 'DELETE' });
+                loadComments();
+            }
+        }
+
+        // Load subscribers
+        async function loadSubscribers() {
+            const subs = await apiCall('/api/subscribe/admin/all');
+            const list = document.getElementById('subscribers-list');
+            if (subs.error) return;
+
+            if (subs.length === 0) {
+                list.innerHTML = `<p style="color: #8B7BA8; font-size: 10px; text-align: center;">No subscribers yet. Keep writing great content! 📧</p>`;
+                return;
+            }
+
+            list.innerHTML = subs.map(s => `
+                <div class="item">
+                    <h3>${s.name}</h3>
+                    <p><strong>Email:</strong> ${s.email} | <strong>Subscribed:</strong> ${new Date(s.subscribed_at).toLocaleDateString()}</p>
+                </div>
+            `).join('');
+        }
+
+        // Load messages
+        async function loadMessages() {
+            const msgs = await apiCall('/api/contact/admin/all');
+            const list = document.getElementById('messages-list');
+            if (msgs.error) return;
+
+            if (msgs.length === 0) {
+                list.innerHTML = `<p style="color: #8B7BA8; font-size: 10px; text-align: center;">No messages yet. Inbox is empty! 📬</p>`;
+                return;
+            }
+
+            list.innerHTML = msgs.map(m => `
+                <div class="item">
+                    <h3>${m.subject} ${m.read ? '✅' : '📬 New'}</h3>
+                    <p><strong>From:</strong> ${m.name} (${m.email}) | <strong>Date:</strong> ${new Date(m.created_at).toLocaleDateString()}</p>
+                    <p style="margin: 10px 0; background: white; padding: 10px; border-radius: 10px;">${m.message}</p>
+                    <div class="item-actions">
+                        ${!m.read ? `<button class="btn" onclick="markRead(${m.id})">Mark Read</button>` : ''}
+                        <button class="btn btn-danger" onclick="deleteMessage(${m.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function markRead(id) {
+            await apiCall(`/api/contact/admin/${id}/read`, { method: 'PUT' });
+            loadMessages();
+        }
+
+        async function deleteMessage(id) {
+            if (confirm('Delete this message?')) {
+                await apiCall(`/api/contact/admin/${id}`, { method: 'DELETE' });
+                loadMessages();
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login.html';
+        }
+
+        // Initial load
+        window.onload = () => {
+            if (token) loadPosts();
+        };
+    </script>
+</body>
+
+</html>
